@@ -1,8 +1,8 @@
-const { Before, After, AfterStep, Status } = require("@cucumber/cucumber");
+const { Before, After, AfterStep, Status, BeforeStep } = require("@cucumber/cucumber");
 const playwright = require('@playwright/test');
 const { POManager } = require('../../pageObjects/POManager');
-
-Before(async function () {
+// can use tags for specific tags in tests
+Before( async function () {
     const browser = await playwright.chromium.launch({
         headless: false
     });
@@ -14,6 +14,10 @@ Before(async function () {
 After(function () {
     console.log("I am last to execute");
 });
+
+BeforeStep(function() {
+
+})
 
 AfterStep( async function ({ result }) {
     if (result.status === Status.FAILED) {

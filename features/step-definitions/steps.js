@@ -1,4 +1,4 @@
-const {When, Then, Given } = require("@cucumber/cucumber");
+const { When, Then, Given } = require("@cucumber/cucumber");
 const { POManager } = require('../../pageObjects/POManager');
 const { expect } = require('@playwright/test');
 const playwright = require('@playwright/test');
@@ -33,4 +33,24 @@ Then('Verify the order is presented in Order HIstory', async function () {
     await ohPage.searchOrderAndSelect(this.orderId);
     expect(this.orderId.includes(await ohPage.getOrderId())).toBeTruthy();
 
+});
+
+
+// // wait untill untill the locator will be presented
+// console.log(await page.locator("[style*='block']").textContent());
+// await expect(page.locator("[style*='block']")).toContainText('Incorrect')
+
+Given('a login to Ecommerce2 appl with {string} and {string}', async function (userName, password) {
+    const userName1 = this.page.locator('#username');
+    const sighIn = this.page.locator('#signInBtn');
+    await this.page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    console.log(await this.page.title());
+    await userName1.type(userName);
+    await this.page.locator('#password').type(password);
+    await sighIn.click();
+});
+
+Then('Verify Error message is diplayed', async function () {
+    console.log(await this.page.locator("[style*='block']").textContent());
+    await expect(this.page.locator("[style*='block']")).toContainText('Incorrect')
 });

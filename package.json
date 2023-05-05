@@ -7,7 +7,8 @@
     "regression": "npx playwright test",
     "webTests": "npx playwright test --grep \"@Web\"",
     "apiTests": "npx playwright test --grep \"@API\"",
-    "safariNewConfig": "npx playwright test --config playwright.config1.js --project=safari"
+    "safariNewConfig": "npx playwright test --config playwright.config1.js --project=safari",
+    "cucumberRegression": "npx cucumber-js --tags \"@Regression\" --parallel 2 --exit --format html:cucumber_report.html --retry 1"
   },
   "keywords": [],
   "author": "",
